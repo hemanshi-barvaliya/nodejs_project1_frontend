@@ -242,7 +242,7 @@ export default function Profile() {
             <img
               src={
                 me?.image
-                  ? `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${
+                  ? `${import.meta.env.VITE_API_URL || "https://nodejs-project1-backend.onrender.com/"}${
                       me.image.startsWith("/") ? "" : "/"
                     }${me.image}`
                   : "/default-avatar.png"
@@ -269,7 +269,7 @@ export default function Profile() {
               <img
                 src={
                   u?.image
-                    ? `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${
+                    ? `${import.meta.env.VITE_API_URL || "https://nodejs-project1-backend.onrender.com/"}${
                         u.image.startsWith("/") ? "" : "/"
                       }${u.image}`
                     : "/default-avatar.png"
@@ -292,12 +292,12 @@ export default function Profile() {
       <div className="chat-panel">
         {activeUser ? (
           <>
-            <div className="chat-header d-flex align-items-center justify-content-between px-2 py-1">
+            <div className="chat-header d-flex align-items-center justify-content-between px-4 py-1">
               <div className="d-flex align-items-center gap-2">
                 <img
                   src={
                     activeUser?.image
-                      ? `${import.meta.env.VITE_API_URL || "http://localhost:5000"}${
+                      ? `${import.meta.env.VITE_API_URL || "https://nodejs-project1-backend.onrender.com/"}${
                           activeUser.image.startsWith("/") ? "" : "/"
                         }${activeUser.image}`
                       : "/default-avatar.png"
@@ -337,7 +337,7 @@ export default function Profile() {
                   fileUrl && fileUrl.startsWith("http")
                     ? fileUrl
                     : fileUrl
-                    ? `http://localhost:5000${fileUrl}`
+                    ? `https://nodejs-project1-backend.onrender.com/${fileUrl}`
                     : "";
 
                 return (

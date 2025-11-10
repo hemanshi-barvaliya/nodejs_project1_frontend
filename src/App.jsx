@@ -14,23 +14,38 @@ import { initSocket } from "./socket";
 function App() {
   const callManagerRef = useRef(null);
   const [me, setMe] = useState(null);
+  const [token, setToken] = useState(sessionStorage.getItem("token"));
 
-  // 🔹 Load logged-in user once
+  // 🔹 Watch for token changes (login or OTP verification)
   useEffect(() => {
-    (async () => {
+    const handleStorageChange = () => {
+      setToken(sessionStorage.getItem("token"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  // 🔹 Load user profile when token exists
+  useEffect(() => {
+    const loadProfile = async () => {
+      if (!token) return;
       try {
         const res = await api.get("/auth/profile");
         setMe(res.data);
       } catch (err) {
         console.error("Failed to load profile:", err);
       }
-    })();
-  }, []);
+    };
+    loadProfile();
+  }, [token]);
 
-  // 🔹 Initialize socket connection globally
+  // 🔹 Initialize socket connection only when token exists
   useEffect(() => {
-    initSocket();
-  }, []);
+    if (token) {
+      initSocket();
+    }
+  }, [token]);
 
   return (
     <Router>
@@ -40,8 +55,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/profile" element={<Profile callManagerRef={callManagerRef} me={me} />} />
-        <Route path="/chat/:roomId" element={<Chat callManagerRef={callManagerRef} me={me} />} />
+        <Route
+          path="/profile"
+          element={<Profile callManagerRef={callManagerRef} me={me} />}
+        />
+        <Route
+          path="/chat/:roomId"
+          element={<Chat callManagerRef={callManagerRef} me={me} />}
+        />
       </Routes>
 
       {me && <CallManager ref={callManagerRef} me={me} />}

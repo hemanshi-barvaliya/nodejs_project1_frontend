@@ -19,7 +19,6 @@ const CallManager = forwardRef(({ me, activeUser }, ref) => {
   const peerRef = useRef();
   const socket = getSocket();
 
-  // -------------------- GET MICROPHONE STREAM --------------------
   const getMicrophoneStream = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -68,7 +67,7 @@ const CallManager = forwardRef(({ me, activeUser }, ref) => {
       signal: offer,
     });
 
-    console.log(`📞 Calling ${activeUser.name} (${activeUser._id})`);
+    console.log(` Calling ${activeUser.name} (${activeUser._id})`);
   };
 
   // -------------------- ACCEPT / REJECT / END --------------------
@@ -140,7 +139,7 @@ const CallManager = forwardRef(({ me, activeUser }, ref) => {
     if (!socket) return;
 
     socket.on("incoming_call", ({ from, signal, name }) => {
-      console.log("📞 Incoming call from", name, from);
+      console.log(" Incoming call from", name, from);
       setIncomingCall({ from, signal, name });
       setOutgoingCall(false);
       setCallActive(false);
@@ -159,7 +158,7 @@ const CallManager = forwardRef(({ me, activeUser }, ref) => {
     });
 
     socket.on("call_rejected", () => {
-      console.log("🚫 Call rejected");
+      console.log(" Call rejected");
       setOutgoingCall(false);
     });
 

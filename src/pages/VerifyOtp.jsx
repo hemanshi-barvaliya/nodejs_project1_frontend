@@ -7,7 +7,7 @@ export default function VerifyOtp() {
   const [message, setMessage] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const email = location.state?.email;
+  const email = location.state?.email || sessionStorage.getItem("email");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,12 @@ export default function VerifyOtp() {
       const res = await api.post("/auth/verify-otp", { email, otp }, { skipAuth: true });
 
       setMessage(res.data.message);
-      navigate("/login");
+      // Store token after verification
+      if (res.data.token) {
+        sessionStorage.setItem("token", res.data.token);
+      }
+      // Navigate to profile page after verification
+      navigate("/profile");
     } catch (err) {
       setMessage(err.response?.data?.message || "Error verifying OTP");
     }

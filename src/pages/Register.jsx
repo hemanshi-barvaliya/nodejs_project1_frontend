@@ -32,7 +32,15 @@ export default function Register() {
       });
 
       setMessage(res.data.message);
-      navigate("/verify-otp", { state: { email: form.email } });
+      // Store email and token in sessionStorage
+      sessionStorage.setItem("email", form.email);
+      if (res.data.token) {
+        sessionStorage.setItem("token", res.data.token);
+      }
+      // Delay navigation to allow success message to be displayed
+      setTimeout(() => {
+        navigate("/verify-otp", { state: { email: form.email } });
+      }, 2000);
     } catch (err) {
       console.error("Register error:", err);
       const backendMessage =
