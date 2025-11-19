@@ -10,7 +10,7 @@ export const initSocket = () => {
     return null;
   }
 
-  socket = io("https://nodejs-project1-backend.onrender.com/", {
+  socket = io("http://localhost:5000/", {
     transports: ["websocket"],
     reconnection: true,
     reconnectionAttempts: 5,

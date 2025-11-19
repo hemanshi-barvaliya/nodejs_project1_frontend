@@ -1,0 +1,154 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #343541;
+  font-family: "Inter", sans-serif;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 20%;
+  min-width: 220px;
+  background: #202123;
+  border-right: 1px solid #2a2b32;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.newChatBtn {
+  width: 100%;
+  padding: 12px;
+  background: #323232;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.chatItem {
+  background: #3d3f4b;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.chatItem.active {
+  background: #323232;
+}
+
+.delBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ff6b6b;
+}
+
+.emptyText {
+  margin-top: 30px;
+  opacity: 0.6;
+}
+
+/* CHAT AREA */
+.gpt-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gpt-header {
+  background: #202123;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #2a2b32;
+}
+
+.gpt-chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #1f1f21;
+}
+
+/* MESSAGES */
+.gpt-message {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  background: #565869;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bubble {
+  background: #444654;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 15px;
+  white-space: pre-wrap;
+}
+
+.gpt-message.user .bubble {
+  background: #444654;
+  margin-left: auto;
+}
+
+.typing .bubble {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* INPUT BAR */
+.gpt-input-box {
+  background: #1f1f21;
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #2a2b32;
+}
+
+.gpt-input-box input {
+  flex: 1;
+  background: #303136;
+  border: 1px solid #565869;
+  border-radius: 8px;
+  padding: 15px;
+  color: white;
+}
+
+.gpt-input-box button {
+  background: #323232;
+  padding: 15px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}

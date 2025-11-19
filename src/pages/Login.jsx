@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/api";
 
 export default function Login() {
@@ -56,6 +56,7 @@ export default function Login() {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
+                required
               />
             </div>
 
@@ -71,7 +72,13 @@ export default function Login() {
                 value={form.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
+                required
               />
+              <div className="text-end mt-2">
+                <Link to="/forgot-password" className="text-decoration-none">
+                  Forgot password?
+                </Link>
+              </div>
             </div>
 
             <button type="submit" className="btn btn-primary w-100">
@@ -80,7 +87,7 @@ export default function Login() {
           </form>
 
           <p className="text-center mt-3">
-            Don't have an account? <a href="/">Register</a>
+            Don't have an account? <Link to="/">Register</Link>
           </p>
         </div>
       </div>

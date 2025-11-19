@@ -16,7 +16,6 @@ export default function Profile() {
   const scrollerRef = useRef();
 
   const callManagerRef = useRef();
-
   // Load profile
   useEffect(() => {
     (async () => {
@@ -242,11 +241,8 @@ export default function Profile() {
             <img
               src={
                 me?.image
-                  ? `${import.meta.env.VITE_API_URL || "https://nodejs-project1-backend.onrender.com/"}${
-                      me.image.startsWith("/") ? "" : "/"
-                    }${me.image}`
-                  : "/default-avatar.png"
               }
+              
               alt="Profile"
               className="profile-avatar"
             />
@@ -269,10 +265,6 @@ export default function Profile() {
               <img
                 src={
                   u?.image
-                    ? `${import.meta.env.VITE_API_URL || "https://nodejs-project1-backend.onrender.com/"}${
-                        u.image.startsWith("/") ? "" : "/"
-                      }${u.image}`
-                    : "/default-avatar.png"
                 }
                 alt={u.name || "User"}
                 className="profile-avatar"
@@ -297,10 +289,6 @@ export default function Profile() {
                 <img
                   src={
                     activeUser?.image
-                      ? `${import.meta.env.VITE_API_URL || "https://nodejs-project1-backend.onrender.com/"}${
-                          activeUser.image.startsWith("/") ? "" : "/"
-                        }${activeUser.image}`
-                      : "/default-avatar.png"
                   }
                   alt="User"
                   className="profile-avatar"
@@ -337,7 +325,7 @@ export default function Profile() {
                   fileUrl && fileUrl.startsWith("http")
                     ? fileUrl
                     : fileUrl
-                    ? `https://nodejs-project1-backend.onrender.com/${fileUrl}`
+                    ? `http://localhost:5000/${fileUrl}`
                     : "";
 
                 return (

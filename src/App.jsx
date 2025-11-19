@@ -10,6 +10,7 @@ import Chat from "./pages/Chat";
 import CallManager from "./pages/CallManager";
 import api from "./api/api";
 import { initSocket } from "./socket";
+import ChatAI from "./pages/ChatAI";
 
 function App() {
   const callManagerRef = useRef(null);
@@ -55,6 +56,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/ai-chat" element={<ChatAI />} />
         <Route
           path="/profile"
           element={<Profile callManagerRef={callManagerRef} me={me} />}
